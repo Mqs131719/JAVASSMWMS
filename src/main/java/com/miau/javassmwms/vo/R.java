@@ -1,6 +1,6 @@
 package com.miau.javassmwms.vo;
 
-import com.feri.fengstudy.config.SystemConfig;
+import com.miau.javassmwms.config.SystemConfig;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
