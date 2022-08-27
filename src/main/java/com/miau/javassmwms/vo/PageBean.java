@@ -5,32 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
-/**
- * ━━━━━━神兽出没━━━━━━
- * 　　　┏┓　　　┏┓
- * 　　┏┛┻━━━┛┻┓
- * 　　┃　　　　　　 ┃
- * 　　┃　　　━　　　┃
- * 　　┃　┳┛　┗┳　  ┃
- * 　　┃　　　　　　 ┃
- * 　　┃　　　┻　　　┃
- * 　　┃　　　　　　　┃
- * 　　┗━┓　　　┏━┛Code is far away from bug with the animal protecting
- * 　　　　┃　　　┃    神兽保佑,代码无bug
- * 　　　　┃　　　┃
- * 　　　　┃　　　┗━━━┓
- * 　　　　┃　　　　　　　┣┓
- * 　　　　┃　　　　　　　┏┛
- * 　　　　┗┓┓┏━┳┓┏┛
- * 　　　　　┃┫┫　┃┫┫
- * 　　　　　┗┻┛　┗┻┛
- * ━━━━━━永无BUG!━━━━━━
- *
- * @Description:
- * @Author: 邢朋辉
- * @Date: 2022/8/27 11:16
- */
 @Data
 @NoArgsConstructor
 public class PageBean {
