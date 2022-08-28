@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.UserDao">
+<!--    根据名字查用户-->
+    <select id="selectByName" resultType="com.miau.javassmwms.entity.User">
+        select * from t_user where name=#{name}
+    </select>
+
+</mapper>
