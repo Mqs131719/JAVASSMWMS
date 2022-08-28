@@ -1,0 +1,57 @@
+package com.miau.javassmwms.service.impl;
+
+import com.miau.javassmwms.dao.GoodsDao;
+import com.miau.javassmwms.entity.Goods;
+import com.miau.javassmwms.service.intf.GoodsService;
+import com.miau.javassmwms.util.StringUtil;
+import com.miau.javassmwms.vo.PageBean;
+import com.miau.javassmwms.vo.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * 小盛胜
+ * 2022/8/27
+ */
+@Service
+public class GoodsServiceImpl implements GoodsService {
+    @Autowired
+    private GoodsDao dao;
+
+    @Override
+    public R save(Goods goods) {
+        if(dao.save(goods)>0){
+            return R.ok();
+        }else {
+            return R.fail();
+        }
+    }
+
+    @Override
+    public R update(Goods goods) {
+        if(dao.update(goods)>0){
+            return R.ok();
+        }else {
+            return R.fail();
+        }
+    }
+
+    @Override
+    public R delete(int id) {
+        if(dao.delete(id)>0){
+            return R.ok();
+        }else {
+            return R.fail();
+        }
+    }
+
+    @Override
+    public PageBean selectPage(String name,int page,int limit) {
+        if(StringUtil.isNotEmpty(name)){
+            name="%"+name+"%";
+        }
+        int start=(page-1)*limit;
+
+        return PageBean.ok(dao.selectCount(name),dao.selectPage(name,start,limit));
+    }
+}

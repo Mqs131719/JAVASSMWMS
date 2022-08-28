@@ -26,7 +26,7 @@
         <!--       设置会话工厂对象的名称 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
         <!--        dao层所在的包名-->
-        <property name="basePackage" value="com.feri.fengstudy.dao"></property>
+        <property name="basePackage" value="com.miau.javassmwms.dao"></property>
     </bean>
     <!--5.扫描 IOC需要创建类所在的包-->
     <context:component-scan base-package="com.miau.javassmwms.service.impl"></context:component-scan>
