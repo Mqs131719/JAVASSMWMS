@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.InventoryDao">
+
+<!--   查询条数 -->
+    <select id="selectCount" resultType="long">
+        select count(*) from t_inventory where wid=#{wid}
+    </select>
+<!--    根据名字查用户-->
+    <resultMap id="inventoryData" type="com.miau.javassmwms.dto.InventoryDto">
+        <result property="goodsName" column="goodsName"></result>
+        <association property="inventory" javaType="com.miau.javassmwms.entity.Inventory">
+            <id column="wid" property="wid"></id>
+            <id column="gid" property="gid"></id>
+            <result column="allowance" property="allowance"></result>
+            <result column="way" property="way"></result>
+        </association>
+    </resultMap>
+    <select id="selectPage" resultMap="inventoryData">
+        select tg.name goodsName,ti.* from t_inventory ti inner join t_goods tg on ti.gid=tg.id where ti.wid=#{wid} order by ti.wid desc limit #{start},#{size}
+    </select>
+    <!--    修改-->
+    <update id="update">
+        update t_inventory set allowance=#{allowance},way=#{way} where wid=#{wid} and gid=#{gid}
+    </update>
+</mapper>
