@@ -11,20 +11,20 @@
   "menuInfo": [
     {
       "title": "WMS",
-      "icon": "fa fa-address-book",
+      "icon": "fa fa-list",
       "href": "",
       "target": "_self",
       "child": [
         {
           "title": "营销管理",
           "href": "",
-          "icon": "fa fa-home",
+          "icon": "fa fa-cart-arrow-down",
           "target": "_self"
         },
         {
           "title": "供应商管理",
           "href": "",
-          "icon": "fa fa-home",
+          "icon": "fa fa-cart-arrow-down",
           "target": "_self",
           "child": [
             {
@@ -36,19 +36,19 @@
             {
               "title": "新增供应商",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-plus-square",
               "target": "_self"
             },
             {
               "title": "下级客商列表",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-list-alt",
               "target": "_self"
             },
             {
               "title": "购销关系维护",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-plus-square",
               "target": "_self"
             }
           ]
@@ -56,25 +56,25 @@
         {
           "title": "客商管理",
           "href": "",
-          "icon": "fa fa-home",
+          "icon": "fa fa-cart-plus",
           "target": "_self",
           "child": [
             {
               "title": "客商列表",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-list-alt",
               "target": "_self"
             },
             {
               "title": "新增客商",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-plus-square",
               "target": "_self"
             },
             {
               "title": "上级供应商列表",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-list-alt",
               "target": "_self"
             }
           ]
@@ -94,13 +94,13 @@
             {
               "title": "新增商品",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-plus-square",
               "target": "_self"
             },
             {
               "title": "上架商品绑定",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-pencil-square-o",
               "target": "_self"
             }
           ]
@@ -120,7 +120,7 @@
             {
               "title": "新增仓库",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-plus-square",
               "target": "_self"
             }
           ]
@@ -146,7 +146,7 @@
             {
               "title": "库存调拨",
               "href": "",
-              "icon": "fa fa-tachometer",
+              "icon": "fa fa-pencil-square-o",
               "target": "_self"
             }
           ]
