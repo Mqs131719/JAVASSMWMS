@@ -28,7 +28,7 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
 
-        insert into t_goods(name,type,ctime) values(#{name},#{type},now())
+        insert into t_goods(name,address,type,ctime) values(#{name},#{address},#{type},now())
     </insert>
 
     <delete id="delete">
@@ -36,7 +36,7 @@
     </delete>
 
     <update id="update">
-        update t_goods set name=#{name},type=#{type} where id=#{id}
+        update t_goods set name=#{name},ctime=#{ctime},type=#{type},address=#{address} where id=#{id}
     </update>
 
 

@@ -69,9 +69,9 @@
                 {type: "checkbox", width: 50},
                 {field: 'id', title: 'ID', sort: true},
                 {field: 'name',  title: '产品名称'},
-                {field: 'ctime',  title: '上架日期'},
                 {field: 'type', title: '产品类型', sort: true},
-                // {field: 'home',  title: '家乡'},
+                {field: 'ctime',  title: '上架日期'},
+                {field: 'address',  title: '产地'},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -106,7 +106,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: 'studentadd.html',
+                    content: 'goodsadd.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -135,7 +135,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: 'goodsadd.html',
+                    content: 'goodsupdate.html',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -144,7 +144,7 @@
             } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function (index) {
                     //请求接口  Ajax
-                    $.get("/api/controller/del.do?id="+data.id,(res)=>{
+                    $.get("/api/controller/delete.do?id="+data.id,(res)=>{
                         if(res.code==200){
                             //删除成功
                             obj.del();

@@ -22,9 +22,10 @@ public class Goods {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ctime ;
-
-    public Goods(String type, String name) {
-        this.type = type;
+    private String address;
+    public Goods(String name, String address,String type) {
         this.name = name;
+        this.type = type;
+        this.address=address;
     }
 }

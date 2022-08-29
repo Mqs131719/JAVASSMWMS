@@ -85,19 +85,19 @@
             elem: '#date2' //指定元素
         });
         //实现省市县三级联动
-        var home="";
+        var address="";
         layarea.render({
             elem: '#area-picker',
             change: function (res) {
                 //选择结果
-                home=res.province+res.city+res.county;
+                address=res.province+res.city+res.county;
             }
         });
         //监听提交，实现数据新增
         form.on('submit(saveBtn)', function (data) {
             //请求接口  Ajax
             var d=data.field;
-            d.home=home;
+            d.address=address;
             $.post("/api/controller/save.do",d,function (res){
                 if(res.code==200){
                     layer.msg("添加成功！");
