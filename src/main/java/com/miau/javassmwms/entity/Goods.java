@@ -23,8 +23,7 @@ public class Goods {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ctime ;
 
-    public Goods(Integer id, String type, String name) {
-        this.id = id;
+    public Goods(String type, String name) {
         this.type = type;
         this.name = name;
     }

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.miau.javassmwms.dao.GoodsDao">
     <select id="selectPage" resultType="com.miau.javassmwms.entity.Goods">
-        select * from t_student
+        select * from t_goods
         <where>
             <if test="name!=null">
                 name like #{name}
@@ -14,7 +14,7 @@
     </select>
 
     <select id="selectCount" resultType="long">
-        select count(*) from t_student
+        select count(*) from t_goods
         <where>
             <if test="name!=null">
                 name like #{name}
@@ -28,7 +28,7 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
 
-        insert into t_goods(id,name,type,ctime) values(#{id},#{name},#{type},now())
+        insert into t_goods(name,type,ctime) values(#{name},#{type},now())
     </insert>
 
     <delete id="delete">

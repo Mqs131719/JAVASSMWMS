@@ -17,7 +17,7 @@ public class test {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         GoodsService service = context.getBean(GoodsService.class);
 
-        System.err.println(service.save(new Goods(2,"手机","苹果")));
-
+//        System.err.println(service.save(new Goods("手机","小米")));
+        System.err.println(service.delete(4));
     }
 }

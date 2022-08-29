@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 小盛胜
  * 2022/8/27
  */
-@RestController //
+@RestController
 @RequestMapping("/api/controller/")
 public class GoodsController {
     @Autowired
@@ -30,8 +30,8 @@ public class GoodsController {
         return service.update(goods);
     }
 
-    @GetMapping("del.do")
-    public R del(int id){
+    @GetMapping("delete.do")
+    public R delete(int id){
         return service.delete(id);
     }
 
