@@ -23,16 +23,21 @@
     </select>
 
     <select id="selectOne" resultType="com.miau.javassmwms.entity.Goods">
-        select * from t_goods where id &lt;=#{id} order by id desc limit 1
+        select * from t_goods where name=#{name}
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert into t_goods(name,type)values (#{name},#{type})
+
+        insert into t_goods(id,name,type,ctime) values(#{id},#{name},#{type},now())
     </insert>
 
     <delete id="delete">
         delete  from t_goods where id=#{id}
     </delete>
+
+    <update id="update">
+        update t_goods set name=#{name},type=#{type} where id=#{id}
+    </update>
 
 
 <!--    <resultMap id="rm1" type="com.miau.javassmwms.entity.Goods">-->
@@ -49,8 +54,8 @@
 <!--    </resultMap>-->
 <!--    <select id="all" resultMap="rm1">-->
 <!--        select s.*,sc.ctime,c.id cid,c.name cname,c.weeks,c.teacher from t_student s-->
-<!--                                                                             left join t_student_course sc on s.id=sc.sid-->
-<!--                                                                             inner join t_course c on sc.cid=c.id;-->
+<!--                    left join t_student_course sc on s.id=sc.sid-->
+<!--                     inner join t_course c on sc.cid=c.id;-->
 <!--    </select>-->
 
 </mapper>

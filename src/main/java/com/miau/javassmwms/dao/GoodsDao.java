@@ -13,7 +13,7 @@ public interface GoodsDao {
 
     long selectCount(String name);
 
-    Goods selectOne(int id);
+    Goods selectOne(String name);
 
     int update(Goods goods);
 

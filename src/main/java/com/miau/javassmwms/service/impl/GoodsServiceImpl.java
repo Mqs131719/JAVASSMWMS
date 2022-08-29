@@ -20,7 +20,10 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public R save(Goods goods) {
-        if(dao.save(goods)>0){
+        Goods goods1 = dao.selectOne(goods.getName());
+        System.out.println(goods1);
+        if(dao.selectOne(goods.getName())==null&&dao.save(goods)>0){
+            dao.save(goods);
             return R.ok();
         }else {
             return R.fail();
