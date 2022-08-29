@@ -52,6 +52,8 @@ public class GoodsServiceImpl implements GoodsService {
     public PageBean selectPage(String name,int page,int limit) {
         if(StringUtil.isNotEmpty(name)){
             name="%"+name+"%";
+        }else {
+            name=null;
         }
         int start=(page-1)*limit;
 
