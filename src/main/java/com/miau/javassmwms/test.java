@@ -15,9 +15,7 @@ public class test {
     @Test
     public void t1(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        GoodsService service = context.getBean(GoodsService.class);
-
-//        System.err.println(service.save(new Goods("手机","小米")));
-        System.err.println(service.delete(4));
+        GoodsDao dao = context.getBean(GoodsDao.class);
+        System.err.println(dao.update(new Goods("","河南省大大发发","家电")));
     }
 }
