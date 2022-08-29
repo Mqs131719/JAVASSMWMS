@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--    1.引入外部配置文件-->
+    <context:property-placeholder location="classpath*:jdbc.properties"></context:property-placeholder>
+    <!--    2.实现数据库连接池的配置-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--        连接数据库的四大属性-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--    3.Mybatis的会话工厂对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--        对应的数据库连接池-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--        映射文件对应的目录  注册-->
+        <property name="mapperLocations" value="classpath*:mapper/*.xml"></property>
+    </bean>
+    <!--   4.实现Mybatis扫描 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--       设置会话工厂对象的名称 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <!--        dao层所在的包名-->
+        <property name="basePackage" value="com.miau.javassmwms.dao"></property>
+    </bean>
+    <!--5.扫描 IOC需要创建类所在的包-->
+    <context:component-scan base-package="com.miau.javassmwms.service.impl"></context:component-scan>
+</beans>

@@ -1,0 +1,177 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/welcome-1.html?t=1"
+  },
+  "logoInfo": {
+    "title": "",
+    "image": "images/WMSlogo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "WMS",
+      "icon": "fa fa-list",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "营销管理",
+          "href": "",
+          "icon": "fa fa-shopping-cart",
+          "target": "_self"
+        },
+        {
+          "title": "供应商管理",
+          "href": "",
+          "icon": "fa fa-cart-arrow-down",
+          "target": "_self",
+          "child": [
+            {
+              "title": "供应商列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            },
+            {
+              "title": "新增供应商",
+              "href": "",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "下级客商列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            },
+            {
+              "title": "购销关系维护",
+              "href": "",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "客商管理",
+          "href": "",
+          "icon": "fa fa-cart-plus",
+          "target": "_self",
+          "child": [
+            {
+              "title": "客商列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            },
+            {
+              "title": "新增客商",
+              "href": "",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "上级供应商列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "商品管理",
+          "href": "",
+          "icon": "fa fa-archive",
+          "target": "_self",
+          "child": [
+            {
+              "title": "商品列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            },
+            {
+              "title": "新增商品",
+              "href": "",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            },
+            {
+              "title": "上架商品绑定",
+              "href": "",
+              "icon": "fa fa-pencil-square-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "仓库管理",
+          "href": "",
+          "icon": "fa fa-cube",
+          "target": "_self",
+          "child": [
+            {
+              "title": "仓库列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            },
+            {
+              "title": "新增仓库",
+              "href": "",
+              "icon": "fa fa-plus-square",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "库存管理",
+          "href": "",
+          "icon": "fa fa-bar-chart",
+          "target": "_self",
+          "child": [
+            {
+              "title": "库存列表",
+              "href": "",
+              "icon": "fa fa-list",
+              "target": "_self"
+            },
+            {
+              "title": "库存盘点",
+              "href": "",
+              "icon": "fa fa-pencil-square-o",
+              "target": "_self"
+            },
+            {
+              "title": "库存调拨",
+              "href": "",
+              "icon": "fa fa-pencil-square-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "出入库管理",
+          "href": "",
+          "icon": "fa fa-truck",
+          "target": "_self",
+          "child": [
+            {
+              "title": "出库管理",
+              "href": "",
+              "icon": "fa fa-arrow-circle-right",
+              "target": "_self"
+            },
+            {
+              "title": "入库管理",
+              "href": "",
+              "icon": "fa fa-arrow-circle-left",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
