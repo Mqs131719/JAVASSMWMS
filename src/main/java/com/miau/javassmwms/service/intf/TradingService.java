@@ -1,11 +1,7 @@
-package com.miau.javassmwms.dao;
+package com.miau.javassmwms.service.intf;
 
-import com.miau.javassmwms.dto.InventoryDto;
-import com.miau.javassmwms.entity.Inventory;
 import com.miau.javassmwms.vo.PageBean;
-import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 
 /**
  * ░░░░░░░░░░░░░░░░░░░░░░░░▄░░
@@ -22,16 +18,10 @@ import java.util.List;
  * 单身狗就这样默默地看着你，一句话也不说。
  *
  * @Author JohnnyMiau
- * @DateTime 2022/8/29 15:50
+ * @DateTime 2022/8/28 11:38
  */
-public interface InventoryDao {
+public interface TradingService {
     /**
-     * 查询总条数 带条件*/
-    long selectCount(int wid);
-    /**
-     * 查询库存数据 分页 limit 带条件*/
-    List<Inventory> selectPage(@Param("wid") int wid, @Param("start") int page, @Param("size") int limit);
-    /**
-     * 修改*/
-    int update(Inventory inventory);
+     * 查询所有交易信息*/
+    PageBean selectPage(int page,int limit);
 }

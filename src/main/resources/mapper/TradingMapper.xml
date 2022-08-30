@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.TradingDao">
+    <!--   查询条数 -->
+    <select id="selectCount" resultType="long">
+        select count(*) from t_trading
+    </select>
+
+    <!--    查询交易信息-->
+    <resultMap id="TradingData" type="com.miau.javassmwms.dto.TradingDto">
+            <id column="id" property="id"></id>
+            <id column="gid" property="gid"></id>
+            <id column="sid" property="sid"></id>
+            <id column="mid" property="mid"></id>
+            <result column="quantity" property="quantity"></result>
+            <result column="sname" property="sname"></result>
+            <result column="mname" property="mname"></result>
+            <result column="gname" property="gname"></result>
+    </resultMap>
+    <select id="selectPage" resultMap="TradingData">
+        select tt.*,tg.name gname,tu.name sname,tu2.name mname
+                from t_trading tt
+                 left join t_goods tg on tt.gid=tg.id
+                 left join t_user tu on tt.sid=tu.id
+                 left join t_user tu2 on tt.mid=tu2.id order by tt.id desc limit #{start},#{size}
+    </select>
+
+</mapper>

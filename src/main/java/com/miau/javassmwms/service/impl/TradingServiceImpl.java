@@ -1,11 +1,14 @@
-package com.miau.javassmwms.dao;
+package com.miau.javassmwms.service.impl;
 
-import com.miau.javassmwms.dto.InventoryDto;
+import com.miau.javassmwms.dao.InventoryDao;
+import com.miau.javassmwms.dao.TradingDao;
+import com.miau.javassmwms.dto.TradingDto;
 import com.miau.javassmwms.entity.Inventory;
+import com.miau.javassmwms.service.intf.TradingService;
 import com.miau.javassmwms.vo.PageBean;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.miau.javassmwms.vo.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * ░░░░░░░░░░░░░░░░░░░░░░░░▄░░
@@ -22,16 +25,16 @@ import java.util.List;
  * 单身狗就这样默默地看着你，一句话也不说。
  *
  * @Author JohnnyMiau
- * @DateTime 2022/8/29 15:50
+ * @DateTime 2022/8/29 16:49
  */
-public interface InventoryDao {
-    /**
-     * 查询总条数 带条件*/
-    long selectCount(int wid);
-    /**
-     * 查询库存数据 分页 limit 带条件*/
-    List<Inventory> selectPage(@Param("wid") int wid, @Param("start") int page, @Param("size") int limit);
-    /**
-     * 修改*/
-    int update(Inventory inventory);
+@Service
+public class TradingServiceImpl implements TradingService {
+    @Autowired
+    private TradingDao dao;
+
+    @Override
+    public PageBean selectPage(int page, int limit) {
+        int start=(page-1)*limit;
+        return PageBean.ok(dao.selectCount(),dao.selectPage(start,limit));
+    }
 }
