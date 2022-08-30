@@ -39,23 +39,12 @@
         update t_goods set name=#{name},type=#{type},address=#{address} where id=#{id}
     </update>
 
+<!--    <delete id="debyid">-->
+<!--        delete from t_goods where in-->
+<!--          <foreach collection="list" item="i" separator=",">-->
+<!--              #{i}-->
+<!--          </foreach>-->
+<!--    </delete>-->
 
-<!--    <resultMap id="rm1" type="com.miau.javassmwms.entity.Goods">-->
-<!--        <id property="id" column="id"></id>-->
-<!--        <result property="name" column="name"></result>-->
-<!--        <result property="type" column="type"></result>-->
-
-<!--        <collection property="GoodsSupport" ofType="com.example.studentcourse.entity.Course">-->
-<!--            <id property="id" column="cid"></id>-->
-<!--            <result property="name" column="cname"></result>-->
-<!--            <result property="weeks" column="weeks"></result>-->
-<!--  -->
-<!--        </collection>-->
-<!--    </resultMap>-->
-<!--    <select id="all" resultMap="rm1">-->
-<!--        select s.*,sc.ctime,c.id cid,c.name cname,c.weeks,c.teacher from t_student s-->
-<!--                    left join t_student_course sc on s.id=sc.sid-->
-<!--                     inner join t_course c on sc.cid=c.id;-->
-<!--    </select>-->
 
 </mapper>

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * 小盛胜
  * 2022/8/27
@@ -39,4 +41,9 @@ public class GoodsController {
     public PageBean page(String name, int page, int limit){
         return service.selectPage(name, page, limit);
     }
+
+//    @PostMapping("debyid.do")
+//    public R debyid(int[] id){
+//        return service.debyid(id);
+//    }
 }

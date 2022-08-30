@@ -114,8 +114,21 @@
             } else if (obj.event === 'delete') {  // 监听删除操作
                 var checkStatus = table.checkStatus('currentTableId')
                     , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                var arr="";
+                for (i in data){
+                    arr+="id="+data[i].id+"&";
+                }
+                $.post("/api/student/debyid.do",arr,(res)=>{
+                    if (res.code==200){
+                        table.reload('currentTableId');
+                    }else {
+                        layer.msg("亲，删除失败");
+                    }
+                })
+            }else if(obj.event==='export'){//导出按钮
+                location.href="/api/goods/download.do";
             }
+
         });
 
         //监听表格复选框选择

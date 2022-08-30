@@ -1,0 +1,31 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"-->
+<!--        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+
+<!--<mapper namespace="com.miau.javassmwms.dao.InventoryDao">-->
+<!--    <resultMap id="rm1" type="com.miau.javassmwms.entity.Inventory">-->
+<!--        <id property="wid" column="wid"></id>-->
+<!--        <result property="allowance" column="allowance"></result>-->
+<!--        <result property="way" column="way"></result>-->
+<!--        <result property="ctime" column="ctime"></result>-->
+
+<!--        <collection property="goods" ofType="com.miau.javassmwms.entity.Goods">-->
+<!--            <id property="id" column="id"></id>-->
+<!--            <result property="name" column="name"></result>-->
+<!--            <result property="address" column="address"></result>-->
+<!--            <result property="type" column="types"></result>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+<!--    <select id="selectPage" resultMap="rm1">-->
+<!--        select in.*,g.id,g.name,g.address,g.type from t_inventory in-->
+<!--                    left join t_goods g on in.wid=g.id order by wid asc limit #{start},#{size}-->
+<!--    </select>-->
+
+<!--    <select id="selectOne" resultType="com.miau.javassmwms.entity.Inventory">-->
+<!--        select * from t_inventory where wid=#{wid}-->
+<!--    </select>-->
+
+<!--    <select id="selectCount" resultType="long">-->
+<!--        select count(*) from t_inventory-->
+<!--    </select>-->
+<!--</mapper>-->

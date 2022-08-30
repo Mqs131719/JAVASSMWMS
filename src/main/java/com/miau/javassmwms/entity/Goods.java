@@ -13,7 +13,6 @@ import java.util.Date;
  * 2022/8/27
  */
 @Data
-
 @NoArgsConstructor
 public class Goods {
     private Integer id;

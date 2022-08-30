@@ -19,4 +19,6 @@ public interface GoodsDao {
 
     int delete(int id);
 
+//    int debyid(int[] id);
+
 }

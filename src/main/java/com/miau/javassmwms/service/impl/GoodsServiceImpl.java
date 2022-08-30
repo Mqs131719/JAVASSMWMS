@@ -9,6 +9,9 @@ import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 小盛胜
  * 2022/8/27
@@ -47,6 +50,16 @@ public class GoodsServiceImpl implements GoodsService {
             return R.fail();
         }
     }
+
+//    @Override
+//    public R debyid(int[] id) {
+//        if(dao.debyid(id)>0){
+//            return R.ok();
+//        }else {
+//            return R.fail();
+//        }
+//    }
+
 
     @Override
     public PageBean selectPage(String name,int page,int limit) {

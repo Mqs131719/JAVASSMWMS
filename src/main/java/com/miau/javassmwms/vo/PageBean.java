@@ -25,4 +25,10 @@ public class PageBean {
         bean.setData(data);
         return bean;
     }
+//    public PageBean(long count, List data) {
+//        this.code=0;
+//        this.msg="OK";
+//        this.count = count;
+//        this.data = data;
+//    }
 }
