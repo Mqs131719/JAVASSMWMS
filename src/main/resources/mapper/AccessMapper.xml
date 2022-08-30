@@ -5,13 +5,13 @@
 <mapper namespace="com.miau.javassmwms.dao.AccessDao">
 <!-- 新增入库-->
     <insert id="saveIn">
-        insert into t_access (quantity,direction)
-        values (#{quantity},"IN")
+        insert into t_access (wid,quantity,gid,direction)
+        values (#{wid},#{quantity},#{gid},"IN")
     </insert>
 <!--    新增出库-->
     <insert id="saveOut">
-        insert into t_access (quantity,direction)
-        values (#{quantity},"OUT")
+        insert into t_access (wid,quantity,gid,direction)
+        values (#{wid},#{quantity},#{gid},"OUT")
     </insert>
     <!--    查询入库总条数-->
     <select id="selectInCount" resultType="long">
@@ -37,13 +37,13 @@
         select ta.*,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
-        where ta.direction="IN" order by ta.id desc limit #{start},#{size}
+        where ta.direction='IN' order by ta.id desc limit #{start},#{size}
     </select>
 <!--    实现出库分页-->
     <select id="selectPageOut" resultMap="accessData">
         select ta.*,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
-        where ta.direction="IN" order by ta.id desc limit #{start},#{size}
+        where ta.direction='OUT' order by ta.id desc limit #{start},#{size}
     </select>
 </mapper>

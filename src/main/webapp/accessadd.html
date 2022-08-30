@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">仓库id：</label>
+        <div class="layui-input-block">
+            <input type="text" name="wid" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">状态：</label>
+        <div class="layui-input-block">
+            <input type="radio" name="direction" value="IN" title="入库" checked="">
+            <input type="radio" name="direction" value="OUT" title="出库">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">商品数量：</label>
+        <div class="layui-input-block">
+            <input type="number" name="quantity" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机" value="" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品id：</label>
+        <div class="layui-input-block">
+            <input  type="number" name="gid" placeholder="请输入入学日期" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增学员</button>
+        </div>
+    </div>
+</div>
+<script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['form','laydate','layarea'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            laydate=layui.laydate,
+            layarea = layui.layarea,
+            $ = layui.$;
+        //渲染日期框
+        laydate.render({
+            elem: '#date1' //指定元素
+        });
+        //渲染日期框
+        laydate.render({
+            elem: '#date2' //指定元素
+        });
+        //实现省市县三级联动
+        var home="";
+        layarea.render({
+            elem: '#area-picker',
+            change: function (res) {
+                //选择结果
+                home=res.province+res.city+res.county;
+            }
+        });
+        //监听提交，实现数据新增
+        form.on('submit(saveBtn)', function (data) {
+            //请求接口  Ajax
+            var d=data.field;
+            d.home=home;
+            $.post("/api/access/saveOut.do",d,function (res){
+                if(res.code==200){
+                    layer.msg("添加成功！");
+                    // 关闭弹出层
+                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(iframeIndex);
+                }else {
+                    layer.msg("亲，新增学员失败！");
+                }
+            })
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>
