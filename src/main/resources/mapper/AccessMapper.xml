@@ -3,35 +3,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.miau.javassmwms.dao.AccessDao">
+
+    <resultMap id="accessData" type="com.miau.javassmwms.dto.AccessDto">
+        <id property="id" column="id" ></id>
+        <id property="inWid" column="wid"></id>
+        <id property="outWid" column="wid"></id>
+        <result property="goodsName" column="goodsName"></result>
+        <result property="whName" column="whName"></result>
+        <result property="quantity" column="quantity"></result>
+    </resultMap>
 <!-- 新增入库-->
     <insert id="saveIn">
         insert into t_access (wid,quantity,gid,direction)
-        values (#{wid},#{quantity},#{gid},"IN")
+        values (#{inWid},#{quantity},#{gid},"IN")
     </insert>
 <!--    新增出库-->
     <insert id="saveOut">
         insert into t_access (wid,quantity,gid,direction)
-        values (#{wid},#{quantity},#{gid},"OUT")
+        values (#{outWid},#{quantity},#{gid},"OUT")
     </insert>
     <!--    查询入库总条数-->
     <select id="selectInCount" resultType="long">
-        select count(*) from t_access where wid=#{wid}
+        select count(*) from t_access where wid=#{inWid}
     </select>
     <!--    查询出库总条数-->
     <select id="selectOutCount" resultType="long">
-        select count(*) from t_access where wid=#{wid}
+        select count(*) from t_access where wid=#{outWid}
     </select>
-    <resultMap id="accessData" type="com.miau.javassmwms.dto.AccessDto">
-        <result property="goodsName" column="goodsName"></result>
-        <result property="whName" column="whName"></result>
-        <association property="access" javaType="com.miau.javassmwms.entity.Access">
-            <id property="id" column="id" ></id>
-            <id property="wid" column="wid"></id>
-            <id property="gid" column="gid"></id>
-            <result property="quantity" column="quantity"></result>
-            <result property="direction" column="direction"></result>
-        </association>
-    </resultMap>
+
 <!--    实现入库分页-->
     <select id="selectPageIn" resultMap="accessData">
         select ta.*,tw.name whName,tg.name goodsName from t_access ta

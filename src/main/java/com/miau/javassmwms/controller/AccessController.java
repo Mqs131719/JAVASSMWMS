@@ -1,6 +1,6 @@
 package com.miau.javassmwms.controller;
 
-import com.miau.javassmwms.entity.Access;
+import com.miau.javassmwms.dto.AccessDto;
 import com.miau.javassmwms.service.intf.AccessService;
 import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
@@ -9,29 +9,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.*;
+
 @RestController
 @RequestMapping("/api/access/")
 public class AccessController {
     @Autowired
     public AccessService service;
     /**入库*/
-    @RequestMapping("save.do")
-    public R save(Access access){
-        return service.saveIn(access);
+    @PostMapping("save.do")
+    public R  save(AccessDto accessDto){
+        List<Object> obj = new ArrayList<>();
+        synchronized (obj){
+            obj.add(service.saveIn(accessDto));
+            obj.add(service.saveOut(accessDto));
+            return R.ok(obj);
+        }
     }
     /** 入库分页*/
-    @RequestMapping("page.do")
-    public PageBean page(int wid, int page, int limit ){
-        return service.selectPage(wid, page, limit);
+    @RequestMapping("pageIn.do")
+    public PageBean page(int page, int limit ){
+        return service.selectInPage(page, limit);
     }
-    /** 出库*/
-    @PostMapping("saveOut.do")
-    public R saveOut(Access access){
-        return service.saveOut(access);
-    }
+
     /**出库分页*/
     @RequestMapping("pageOut.do")
-    public PageBean pageOut(int wid,int page,int limit) {
-        return service.selectOutPage(wid, page, limit);
+    public PageBean pageOut(int page,int limit){
+        return service.selectOutPage(page, limit);
     }
 }
