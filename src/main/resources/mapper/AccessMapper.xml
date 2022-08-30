@@ -5,13 +5,13 @@
 <mapper namespace="com.miau.javassmwms.dao.AccessDao">
 <!-- 新增入库-->
     <insert id="saveIn">
-        insert into t_access (quantity,direction)
-        values (#{quantity},"IN")
+        insert into t_access (wid,quantity,gid,direction)
+        values (#{wid},#{quantity},#{gid},"IN")
     </insert>
 <!--    新增出库-->
     <insert id="saveOut">
-        insert into t_access (quantity,direction)
-        values (#{quantity},"OUT")
+        insert into t_access (wid,quantity,gid,direction)
+        values (#{wid},#{quantity},#{gid},"OUT")
     </insert>
     <!--    查询入库总条数-->
     <select id="selectInCount" resultType="long">
