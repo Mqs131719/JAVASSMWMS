@@ -37,13 +37,13 @@
         select ta.*,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
-        where ta.direction="IN" order by ta.id desc limit #{start},#{size}
+        where ta.direction='IN' order by ta.id desc limit #{start},#{size}
     </select>
 <!--    实现出库分页-->
     <select id="selectPageOut" resultMap="accessData">
         select ta.*,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
-        where ta.direction="IN" order by ta.id desc limit #{start},#{size}
+        where ta.direction='OUT' order by ta.id desc limit #{start},#{size}
     </select>
 </mapper>

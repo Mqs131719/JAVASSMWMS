@@ -159,7 +159,7 @@
           "child": [
             {
               "title": "出库管理",
-              "href": "",
+              "href": "accessQuery.html",
               "icon": "fa fa-arrow-circle-right",
               "target": "_self"
             },
