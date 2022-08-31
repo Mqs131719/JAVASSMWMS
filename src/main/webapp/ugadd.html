@@ -19,7 +19,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户选择：</label>
         <div class="layui-input-block">
-            <select name="name" id="uids" lay-verify="required">
+            <select name="name" id="uid" lay-verify="required">
 
             </select>
         </div>
@@ -28,7 +28,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">商品选择：</label>
         <div class="layui-input-block">
-            <select name="name" id="gids" lay-verify="required">
+            <select name="name" id="gid" lay-verify="required">
 
             </select>
         </div>
@@ -74,7 +74,10 @@
         form.on('submit(saveBtn)', function (data) {
             //请求接口  Ajax
             var d=data.field;
-            d.name=name;
+
+            d.gid=gid;
+            d.uid=uid;
+
             $.post("/api/ug/save.do",d,function (res){
                 if(res.code==200){
                     layer.msg("添加成功！");
@@ -94,10 +97,10 @@
         //请求接口  Ajax
         $.get("/api/ug/all1.do",(res)=>{
             if(res.code==200){
-                $("#gids").html("");
+                $("#uid").html("");
                 //遍历
                 for(var i in res.data){
-                    $("#uids").append("<option value='"+res.data[i].id+"'>"+res.data[i].name+"</option>");
+                    $("#uid").append("<option value='"+res.data[i].uid+"'>"+res.data[i].name+"</option>");
                 }
                 form.render('select'); //渲染 select 选择框
             }
@@ -106,9 +109,9 @@
     function loadGids(){
         $.get("/api/ug/all2.do",(res)=> {
             if (res.code == 200) {
-                $("#gids").html("");
+                $("#gid").html("");
                 for (var i in res.data) {
-                    $("#gids").append("<option value='" + res.data[i].id + "'>" + res.data[i].name+"</option>");
+                    $("#gid").append("<option value='" + res.data[i].gid + "'>" + res.data[i].name+"</option>");
                 }
                 form.render('select');
             }
