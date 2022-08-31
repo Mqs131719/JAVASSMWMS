@@ -11,16 +11,17 @@
         <result property="goodsName" column="goodsName"></result>
         <result property="whName" column="whName"></result>
         <result property="quantity" column="quantity"></result>
+        <result property="status" column="status"></result>
     </resultMap>
 <!-- 新增入库-->
-    <insert id="saveIn" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveIn">
         insert into t_access (wid,quantity,gid,direction,status,flag)
-        values (#{inWid},#{quantity},#{gid},"IN",0,#{d})
+        values (#{accessDto.inWid},#{accessDto.quantity},#{accessDto.gid},"IN",0,#{d})
     </insert>
 <!--    新增出库-->
     <insert id="saveOut">
         insert into t_access (wid,quantity,gid,direction,status,flag)
-        values (#{outWid},#{quantity},#{gid},"OUT",0,#{d})
+        values (#{accessDto.outWid},#{accessDto.quantity},#{accessDto.gid},"OUT",0,#{d})
     </insert>
 <!--出库更新 入库在途信息-->
     <update id="updateOAt">
@@ -61,14 +62,14 @@
 
 <!--    实现入库分页-->
     <select id="selectPageIn" resultMap="accessData">
-        select ta.*,tw.name whName,tg.name goodsName from t_access ta
+        select ta.id,ta.wid,ta.quantity,ta.gid,ta.status,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
         where ta.direction='IN' order by ta.id desc limit #{start},#{size}
     </select>
 <!--    实现出库分页-->
     <select id="selectPageOut" resultMap="accessData">
-        select ta.*,tw.name whName,tg.name goodsName from t_access ta
+        select ta.id,ta.wid,ta.quantity,ta.gid,ta.status,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
         where ta.direction='OUT' order by ta.id desc limit #{start},#{size}

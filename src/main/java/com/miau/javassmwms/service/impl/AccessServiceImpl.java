@@ -14,7 +14,7 @@ import java.util.Date;
 public class AccessServiceImpl implements AccessService {
     @Autowired
     private AccessDao dao;
-    long d=new Date().getTime();
+    String d=String.valueOf(new Date().getTime());
     /** 入库新增*/
     @Override
     public R saveIn(AccessDto accessDto) {

@@ -21,4 +21,5 @@ public class AccessDto {
     private Integer inWid;
 
     private Integer outWid;
+    private Integer status;
 }

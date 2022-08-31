@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface AccessDao {
     /** 新增 入库信息*/
-    int saveIn(AccessDto accessDto,long d);
+    int saveIn(@Param("accessDto")AccessDto accessDto,@Param("d") String d);
     /** 新增 出库信息*/
-    int saveOut(AccessDto accessDto,long d);
+    int saveOut(@Param("accessDto")AccessDto accessDto,@Param("d") String d);
     /** 出库更新 入库在途信息*/
     int updateOAt(AccessDto accessDto);
     /** 出库更新 出库剩余库存信息*/

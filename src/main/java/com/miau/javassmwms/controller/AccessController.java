@@ -22,6 +22,8 @@ public class AccessController {
         List<Object> obj = new ArrayList<>();
             obj.add(service.saveIn(accessDto));
             obj.add(service.saveOut(accessDto));
+            obj.add(service.updateOAt(accessDto));
+            obj.add(service.updateOAl(accessDto));
             return R.ok(obj);
     }
     /** 入库分页*/
@@ -40,8 +42,6 @@ public class AccessController {
     @PostMapping("affirmOut.do")
     public R  affirmOut(AccessDto accessDto){
         List<Object> obj = new ArrayList<>();
-        obj.add(service.updateOAt(accessDto));
-        obj.add(service.updateOAl(accessDto));
         obj.add(service.affirmOO(accessDto));
         obj.add(service.affirmOI(accessDto));
         return R.ok(obj);
