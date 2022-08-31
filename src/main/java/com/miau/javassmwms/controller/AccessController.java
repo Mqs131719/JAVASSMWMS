@@ -20,11 +20,9 @@ public class AccessController {
     @PostMapping("save.do")
     public R  save(AccessDto accessDto){
         List<Object> obj = new ArrayList<>();
-        synchronized (obj){
             obj.add(service.saveIn(accessDto));
             obj.add(service.saveOut(accessDto));
             return R.ok(obj);
-        }
     }
     /** 入库分页*/
     @RequestMapping("pageIn.do")
@@ -36,5 +34,25 @@ public class AccessController {
     @RequestMapping("pageOut.do")
     public PageBean pageOut(int page,int limit){
         return service.selectOutPage(page, limit);
+    }
+
+    /**确认出库*/
+    @PostMapping("affirmOut.do")
+    public R  affirmOut(AccessDto accessDto){
+        List<Object> obj = new ArrayList<>();
+        obj.add(service.updateOAt(accessDto));
+        obj.add(service.updateOAl(accessDto));
+        obj.add(service.affirmOO(accessDto));
+        obj.add(service.affirmOI(accessDto));
+        return R.ok(obj);
+    }
+    /**确认入库*/
+    @PostMapping("affirmIn.do")
+    public R  affirmIn(AccessDto accessDto){
+        List<Object> obj = new ArrayList<>();
+        obj.add(service.updateIAt(accessDto));
+        obj.add(service.affirmIO(accessDto));
+        obj.add(service.affirmII(accessDto));
+        return R.ok(obj);
     }
 }

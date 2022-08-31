@@ -8,9 +8,23 @@ import java.util.List;
 
 public interface AccessDao {
     /** 新增 入库信息*/
-    int saveIn(AccessDto accessDto);
-    /** 新增出库信息*/
-    int saveOut(AccessDto accessDto);
+    int saveIn(AccessDto accessDto,long d);
+    /** 新增 出库信息*/
+    int saveOut(AccessDto accessDto,long d);
+    /** 出库更新 入库在途信息*/
+    int updateOAt(AccessDto accessDto);
+    /** 出库更新 出库剩余库存信息*/
+    int updateOAl(AccessDto accessDto);
+    /** 入库更新 入库在途信息*/
+    int updateIAt(AccessDto accessDto);
+    /** 确认出库更新出库数据*/
+    int affirmOO(AccessDto accessDto);
+    /** 确认出库更新入库数据*/
+    int affirmOI(AccessDto accessDto);
+    /** 确认入库更新出库数据*/
+    int affirmIO(AccessDto accessDto);
+    /** 确认入库更新入库数据*/
+    int affirmII(AccessDto accessDto);
     /** 查询入库的总条数*/
     long selectInCount();
     /** 查询出库的总条数*/
