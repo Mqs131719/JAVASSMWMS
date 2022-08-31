@@ -5,6 +5,7 @@ import com.miau.javassmwms.service.intf.AccessService;
 import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,15 +28,15 @@ public class AccessController {
             return R.ok(obj);
     }
     /** 入库分页*/
-    @RequestMapping("pageIn.do")
-    public PageBean page(int page, int limit ){
-        return service.selectInPage(page, limit);
+    @GetMapping("pageIn.do")
+    public PageBean page(String goodsName, int page, int limit ){
+        return service.selectInPage(goodsName,page, limit);
     }
 
     /**出库分页*/
-    @RequestMapping("pageOut.do")
-    public PageBean pageOut(int page,int limit){
-        return service.selectOutPage(page, limit);
+    @GetMapping("pageOut.do")
+    public PageBean pageOut(String goodsName,int page,int limit){
+        return service.selectOutPage(goodsName,page, limit);
     }
 
     /**确认出库*/

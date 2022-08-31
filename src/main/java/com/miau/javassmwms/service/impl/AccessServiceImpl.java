@@ -3,6 +3,7 @@ package com.miau.javassmwms.service.impl;
 import com.miau.javassmwms.dao.AccessDao;
 import com.miau.javassmwms.dto.AccessDto;
 import com.miau.javassmwms.service.intf.AccessService;
+import com.miau.javassmwms.util.StringUtil;
 import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +38,21 @@ public class AccessServiceImpl implements AccessService {
     }
     /** 入库分页*/
     @Override
-    public PageBean selectInPage(int page, int limit) {
+    public PageBean selectInPage(String goodsName,int page, int limit) {
+        if (StringUtil.isNotEmpty(goodsName)){
+            goodsName="%"+goodsName+"%";
+        }
         int start=(page-1)*limit;
-        return PageBean.ok(dao.selectInCount(),dao.selectPageIn(start,limit));
+        return PageBean.ok(dao.selectInCount(goodsName),dao.selectPageIn(goodsName,start,limit));
     }
     /** 出库分页*/
     @Override
-    public PageBean selectOutPage(int page, int limit) {
+    public PageBean selectOutPage(String goodsName,int page, int limit) {
+        if (StringUtil.isNotEmpty(goodsName)){
+            goodsName="%"+goodsName+"%";
+        }
         int start=(page-1)*limit;
-        return PageBean.ok(dao.selectInCount(),dao.selectPageIn(start,limit));
+        return PageBean.ok(dao.selectInCount(goodsName),dao.selectPageIn(goodsName,start,limit));
     }
 
     @Override

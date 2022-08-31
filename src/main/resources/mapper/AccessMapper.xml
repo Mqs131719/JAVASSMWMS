@@ -65,13 +65,25 @@
         select ta.id,ta.wid,ta.quantity,ta.gid,ta.status,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
-        where ta.direction='IN' order by ta.id desc limit #{start},#{size}
+        <where>
+            <if test="goodsName != null">
+                goodsName like #{goodsName}
+            </if>
+             or ta.direction='IN'
+        </where>
+         order by ta.id desc limit #{start},#{size}
     </select>
 <!--    实现出库分页-->
     <select id="selectPageOut" resultMap="accessData">
         select ta.id,ta.wid,ta.quantity,ta.gid,ta.status,tw.name whName,tg.name goodsName from t_access ta
         left join t_warehouse tw on ta.wid=tw.id
         left join t_goods tg on ta.gid=tg.id
-        where ta.direction='OUT' order by ta.id desc limit #{start},#{size}
+        <where>
+            <if test="goodsName != null">
+                goodsName like #{goodsName}
+            </if>
+               or ta.direction='OUT'
+        </where>
+        order by ta.id desc limit #{start},#{size}
     </select>
 </mapper>

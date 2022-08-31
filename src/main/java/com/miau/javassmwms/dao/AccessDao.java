@@ -26,11 +26,11 @@ public interface AccessDao {
     /** 确认入库更新入库数据*/
     int affirmII(AccessDto accessDto);
     /** 查询入库的总条数*/
-    long selectInCount();
+    long selectInCount(String goodsName);
     /** 查询出库的总条数*/
-    long selectOutCount();
+    long selectOutCount(String goodsName);
     /** 实现入库分页*/
-    List<Access> selectPageIn(@Param("start")int start, @Param("size")int size);
+    List<Access> selectPageIn(@Param("goodsName")String goodsName,@Param("start")int start, @Param("size")int size);
     /** 实现出库分页*/
-    List<Access> selectPageOut(@Param("start")int start, @Param("size")int size);
+    List<Access> selectPageOut(@Param("goodsName")String goodsName,@Param("start")int start, @Param("size")int size);
 }

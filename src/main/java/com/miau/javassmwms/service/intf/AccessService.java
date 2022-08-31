@@ -11,9 +11,9 @@ public interface AccessService {
     /** 出库新增*/
     R saveOut(AccessDto accessDto);
     /** 入库分页*/
-    PageBean selectInPage(int page, int limit);
+    PageBean selectInPage(String goodsName,int page, int limit);
     /** 出库分页*/
-    PageBean selectOutPage(int page,int limit);
+    PageBean selectOutPage(String goodsName,int page,int limit);
 
     /** 出库更新 入库在途信息*/
     R updateOAt(AccessDto accessDto);
