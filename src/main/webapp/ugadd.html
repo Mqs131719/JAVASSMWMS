@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="./css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户选择：</label>
+        <div class="layui-input-block">
+            <select name="uid" id="uids" lay-verify="required">
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所选商品：</label>
+        <div class="layui-input-block">
+            <select name="gid" id="gids" lay-verify="required">
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增商品</button>
+        </div>
+    </div>
+</div>
+<script src="./lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="./js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    var form,$;
+    layui.use(['form','laydate','layarea'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            laydate=layui.laydate,
+            layarea = layui.layarea,
+            $ = layui.$;
+        //渲染日期框
+        laydate.render({
+            elem: '#date1' //指定元素
+        });
+        //渲染日期框
+        laydate.render({
+            elem: '#date2' //指定元素
+        });
+        //实现省市县三级联动
+        var home="";
+        layarea.render({
+            elem: '#area-picker',
+            change: function (res) {
+                //选择结果
+                home=res.province+res.city+res.county;
+            }
+        });
+        //调用 查询班级列表
+        loadUids();
+        loadGids();
+        //监听提交，实现数据新增
+        form.on('submit(saveBtn)', function (data) {
+            //请求接口  Ajax
+            var d=data.field;
+            d.address=address;
+            $.post("/api/ug/save.do",d,function (res){
+                if(res.code==200){
+                    layer.msg("添加成功！");
+                    // 关闭弹出层
+                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(iframeIndex);
+                }else {
+                    layer.msg("亲，新增学员失败！");
+                }
+            })
+            return false;
+        });
+
+    });
+    function loadUids(){
+        $.get("/api/ug/all1.do",(res)=>{
+        if (res.code==200){
+            $("#uids").html("");
+            for (var i in res.data){
+                $("#uids").append("<option value='"+res.data[i].uid+"'>"+res.data[i].uname+"</option>");
+            }
+            form.render('select');
+        }
+        })
+    }
+    function loadGids(){
+        $.get("/api/ug/all2.do",(res)=> {
+            if (res.code == 200) {
+                $("#gids").html("");
+                for (var i in res.data) {
+                    $("#gids").append("<option value='" + res.data[i].gid + "'>" + res.data[i].gname+"</option>");
+                }
+                form.render('select');
+            }
+        })
+    }
+
+
+
+</script>
+</body>
+</html>

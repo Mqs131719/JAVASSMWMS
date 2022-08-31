@@ -15,7 +15,7 @@ public interface GoodsService {
 
     R delete(int id);
 
-//    R debyid(int[] id);
+    R debyid(int[] id);
 
     PageBean selectPage(String name,int page,int limit);
 

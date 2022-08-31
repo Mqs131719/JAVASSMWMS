@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.UgDao">
+
+    <!--    根据名字查用户-->
+    <insert id="save">
+        insert into t_property_goods(gid,uid) values (#{gid},#{uid})
+    </insert>
+
+
+        <select id="all1" resultType="com.miau.javassmwms.dto.UgDto">
+            select u.id=uid,g.id=gid,u.name=uname,g.name=gname from t_user u inner join t_goods g on u.id=g.id
+        </select>
+
+        <select id="all2" resultType="com.miau.javassmwms.dto.UgDto">
+            select g.id=gid,u.id=uid,g.name=gname,u.name=uname from t_goods g inner join t_user u on g.id=u.id
+        </select>
+</mapper>

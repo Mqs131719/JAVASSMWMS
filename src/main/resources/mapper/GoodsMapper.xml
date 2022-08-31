@@ -39,12 +39,13 @@
         update t_goods set name=#{name},type=#{type},address=#{address} where id=#{id}
     </update>
 
-<!--    <delete id="debyid">-->
-<!--        delete from t_goods where in-->
-<!--          <foreach collection="list" item="i" separator=",">-->
-<!--              #{i}-->
-<!--          </foreach>-->
-<!--    </delete>-->
+    <delete id="debyid">
+        delete from t_goods where id in(
+          <foreach collection="array" item="i" separator=",">
+            #{i}
+          </foreach>
+            )
+    </delete>
 
 
 </mapper>

@@ -42,8 +42,8 @@ public class GoodsController {
         return service.selectPage(name, page, limit);
     }
 
-//    @PostMapping("debyid.do")
-//    public R debyid(int[] id){
-//        return service.debyid(id);
-//    }
+    @PostMapping("debyid.do")
+    public R debyid(int[] id){
+        return service.debyid(id);
+    }
 }

@@ -51,14 +51,14 @@ public class GoodsServiceImpl implements GoodsService {
         }
     }
 
-//    @Override
-//    public R debyid(int[] id) {
-//        if(dao.debyid(id)>0){
-//            return R.ok();
-//        }else {
-//            return R.fail();
-//        }
-//    }
+    @Override
+    public R debyid(int[] id) {
+        if(dao.debyid(id)>0){
+            return R.ok();
+        }else {
+            return R.fail();
+        }
+    }
 
 
     @Override
