@@ -9,9 +9,10 @@ import java.util.List;
  * 2022/8/30
  */
 public interface UgDao {
+
     int save(UgDto ugDto);
 
-     List<UgDto> all1();
+    List<UgDto> all1();
 
-     List<UgDto> all2();
+    List<UgDto> all2();
 }

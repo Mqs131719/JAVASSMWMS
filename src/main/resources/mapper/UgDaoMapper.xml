@@ -12,11 +12,12 @@
     </insert>
 
 
-        <select id="all1" resultType="com.miau.javassmwms.dto.UgDto">
-            select u.id=uid,g.id=gid,u.name=uname,g.name=gname from t_user u inner join t_goods g on u.id=g.id
+        <select id="all1" resultType="com.miau.javassmwms.entity.User">
+            select id,name from t_user order by id desc
         </select>
 
-        <select id="all2" resultType="com.miau.javassmwms.dto.UgDto">
-            select g.id=gid,u.id=uid,g.name=gname,u.name=uname from t_goods g inner join t_user u on g.id=u.id
-        </select>
+         <select id="all2" resultType="com.miau.javassmwms.entity.Goods">
+             select id,name from t_goods order by id desc
+         </select>
+
 </mapper>

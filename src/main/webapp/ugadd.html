@@ -6,8 +6,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="./lib/layui-v2.6.3/css/layui.css" media="all">
-    <link rel="stylesheet" href="./css/public.css" media="all">
+    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
     <style>
         body {
             background-color: #ffffff;
@@ -19,30 +19,33 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户选择：</label>
         <div class="layui-input-block">
-            <select name="uid" id="uids" lay-verify="required">
+            <select name="name" id="uids" lay-verify="required">
+
             </select>
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">所选商品：</label>
+        <label class="layui-form-label">商品选择：</label>
         <div class="layui-input-block">
-            <select name="gid" id="gids" lay-verify="required">
+            <select name="name" id="gids" lay-verify="required">
+
             </select>
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增商品</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增学员</button>
         </div>
     </div>
 </div>
-<script src="./lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
-<script src="./js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     var form,$;
     layui.use(['form','laydate','layarea'], function () {
-        var form = layui.form,
+        form = layui.form,
             layer = layui.layer,
             laydate=layui.laydate,
             layarea = layui.layarea,
@@ -71,11 +74,12 @@
         form.on('submit(saveBtn)', function (data) {
             //请求接口  Ajax
             var d=data.field;
-            d.address=address;
+            d.name=name;
             $.post("/api/ug/save.do",d,function (res){
                 if(res.code==200){
                     layer.msg("添加成功！");
                     // 关闭弹出层
+                    parent.layui.table.reload('currentTableId');
                     var iframeIndex = parent.layer.getFrameIndex(window.name);
                     parent.layer.close(iframeIndex);
                 }else {
@@ -84,17 +88,19 @@
             })
             return false;
         });
-
     });
+    //加载班级信息
     function loadUids(){
+        //请求接口  Ajax
         $.get("/api/ug/all1.do",(res)=>{
-        if (res.code==200){
-            $("#uids").html("");
-            for (var i in res.data){
-                $("#uids").append("<option value='"+res.data[i].uid+"'>"+res.data[i].uname+"</option>");
+            if(res.code==200){
+                $("#gids").html("");
+                //遍历
+                for(var i in res.data){
+                    $("#uids").append("<option value='"+res.data[i].id+"'>"+res.data[i].name+"</option>");
+                }
+                form.render('select'); //渲染 select 选择框
             }
-            form.render('select');
-        }
         })
     }
     function loadGids(){
@@ -102,15 +108,12 @@
             if (res.code == 200) {
                 $("#gids").html("");
                 for (var i in res.data) {
-                    $("#gids").append("<option value='" + res.data[i].gid + "'>" + res.data[i].gname+"</option>");
+                    $("#gids").append("<option value='" + res.data[i].id + "'>" + res.data[i].name+"</option>");
                 }
                 form.render('select');
             }
         })
     }
-
-
-
 </script>
 </body>
 </html>

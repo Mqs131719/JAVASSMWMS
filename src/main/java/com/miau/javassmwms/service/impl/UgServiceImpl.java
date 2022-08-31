@@ -7,6 +7,8 @@ import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 小盛胜
  * 2022/8/30
@@ -27,8 +29,9 @@ public class UgServiceImpl implements UgService {
     }
     @Override
     public R all1(){
+        return R.ok(dao.all1());
 
-     return R.ok(dao.all1());
+//     return dao.all1();
  }
 
     @Override
