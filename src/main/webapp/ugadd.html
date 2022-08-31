@@ -75,9 +75,6 @@
             //请求接口  Ajax
             var d=data.field;
 
-            d.gid=gid;
-            d.uid=uid;
-
             $.post("/api/ug/save.do",d,function (res){
                 if(res.code==200){
                     layer.msg("添加成功！");
@@ -100,7 +97,7 @@
                 $("#uid").html("");
                 //遍历
                 for(var i in res.data){
-                    $("#uid").append("<option value='"+res.data[i].uid+"'>"+res.data[i].name+"</option>");
+                    $("#uid").append("<option value='"+res.data[i].uid + "'>"+res.data[i].name+"</option>");
                 }
                 form.render('select'); //渲染 select 选择框
             }
