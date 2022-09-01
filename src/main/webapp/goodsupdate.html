@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+
 <div class="layui-form layuimini-form" lay-filter="formTest" >
     <!--    记录id,方便修改-->
     <input type="hidden" name="id">
@@ -67,8 +68,8 @@
         form.on('submit(saveBtn)', function (data) {
             //请求接口 Ajax
             var d=data.field;
-            console(d);
-            $.post("/api/controller/update.do",d,data.field,function (res){
+            console.log(d);
+            $.post("/api/controller/update.do",data.field,function (res){
                 if(res.code==200){
                     // 关闭弹出层
                     var iframeIndex = parent.layer.getFrameIndex(window.name);

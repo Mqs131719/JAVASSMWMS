@@ -29,8 +29,8 @@ public class GoodsController {
     }
 
     @PostMapping("update.do")
-    public R update(int id,String name, String type, String address){
-        return service.update(id,name, type, address);
+    public R update(Goods goods){
+        return service.update(goods);
     }
 
     @GetMapping("delete.do")

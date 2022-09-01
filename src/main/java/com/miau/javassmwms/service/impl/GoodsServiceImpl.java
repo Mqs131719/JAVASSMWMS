@@ -31,8 +31,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public R update(int id,String name,String type,String address) {
-        if(dao.update(id,name, type, address)>0){
+    public R update(Goods goods) {
+        if(dao.update(goods)>0){
             return R.ok();
         }else {
             return R.fail();
