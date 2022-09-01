@@ -30,7 +30,9 @@ public class AccessController {
     /** 入库分页*/
     @GetMapping("pageIn.do")
     public PageBean page(String goodsName, int page, int limit ){
-        return service.selectInPage(goodsName,page, limit);
+        PageBean pb= service.selectInPage(goodsName,page, limit);
+        System.err.println(pb);
+        return pb;
     }
 
     /**出库分页*/

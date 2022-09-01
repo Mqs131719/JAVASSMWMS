@@ -42,6 +42,7 @@ public class AccessServiceImpl implements AccessService {
         if (StringUtil.isNotEmpty(goodsName)){
             goodsName="%"+goodsName+"%";
         }
+        System.err.println(goodsName);
         int start=(page-1)*limit;
         return PageBean.ok(dao.selectInCount(goodsName),dao.selectPageIn(goodsName,start,limit));
     }
@@ -52,7 +53,7 @@ public class AccessServiceImpl implements AccessService {
             goodsName="%"+goodsName+"%";
         }
         int start=(page-1)*limit;
-        return PageBean.ok(dao.selectInCount(goodsName),dao.selectPageIn(goodsName,start,limit));
+        return PageBean.ok(dao.selectInCount(goodsName),dao.selectPageOut(goodsName,start,limit));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.miau.javassmwms.dto;
 
-import com.miau.javassmwms.entity.Access;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
