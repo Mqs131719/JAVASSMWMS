@@ -23,4 +23,6 @@ public interface GoodsDao {
     int debyid(int[] id);
 
     List<GoodsExcelDto> all();
+
+    int saveBatch(List<GoodsExcelDto> list);
 }

@@ -49,4 +49,11 @@
     <select id="all" resultType="com.miau.javassmwms.dto.GoodsExcelDto">
         select * from t_goods order by id desc
     </select>
+
+    <insert id="saveBatch">
+        insert into t_goods(name,address,type,ctime) values
+         <foreach collection="list" separator="," item="s">
+             (#{s.name},#{s.address},#{s.type},now())
+         </foreach>
+    </insert>
 </mapper>

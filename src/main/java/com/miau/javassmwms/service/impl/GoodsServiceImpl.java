@@ -1,5 +1,8 @@
 package com.miau.javassmwms.service.impl;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.context.AnalysisContext;
+import com.alibaba.excel.read.listener.ReadListener;
 import com.miau.javassmwms.dao.GoodsDao;
 import com.miau.javassmwms.dto.GoodsExcelDto;
 import com.miau.javassmwms.entity.Goods;
@@ -9,7 +12,9 @@ import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -76,5 +81,27 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<GoodsExcelDto> all() {
         return dao.all();
+    }
+
+    @Override
+    public R upload(MultipartFile file) throws IOException {
+        //1.接收文件， 获取文件内容
+        //1.验证上传文件是否存在
+        if(!file.isEmpty()){
+            //2.解析Excel -EasyExcel
+            //2.解析Excel数据
+            List<GoodsExcelDto> list= EasyExcel.read(file.getInputStream(), GoodsExcelDto.class, new ReadListener() {
+                @Override
+                public void invoke(Object o, AnalysisContext analysisContext) {}
+                @Override
+                public void doAfterAllAnalysed(AnalysisContext analysisContext) {}
+            }).sheet().doReadSync();
+            //3.Mybatis 实现批量新增
+            if(dao.saveBatch(list)>0){
+                //4.返回
+                return R.ok();
+            }
+        }
+        return R.fail();
     }
 }
