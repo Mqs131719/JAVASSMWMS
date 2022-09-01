@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UgDto {
-
     private Integer gid;
     private Integer uid;
     private String gname;

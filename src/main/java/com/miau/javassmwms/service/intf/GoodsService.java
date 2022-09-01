@@ -11,7 +11,7 @@ public interface GoodsService {
 
     R save(Goods goods);
 
-    R update(Goods goods);
+    R update(int id,String name,String type,String address);
 
     R delete(int id);
 

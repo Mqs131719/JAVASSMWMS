@@ -16,7 +16,7 @@ public class test {
     public void t1(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         GoodsDao dao = context.getBean(GoodsDao.class);
-        System.err.println(dao.update(new Goods("","河南省大大发发","家电")));
+
     }
     @Test
     public void t2(){
@@ -24,4 +24,10 @@ public class test {
         UgDao dao = context.getBean(UgDao.class);
         System.err.println(dao.all2());
     }
+//    @Test
+//    public void t3(){
+//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+//        GoodsDao dao = context.getBean(GoodsDao.class);
+//        System.err.println(dao.update(16,"vivo","家居家装","河南省郑州市"));
+//    }
 }

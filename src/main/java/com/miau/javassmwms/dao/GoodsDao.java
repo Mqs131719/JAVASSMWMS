@@ -15,7 +15,7 @@ public interface GoodsDao {
 
     Goods selectOne(String name);
 
-    int update(Goods goods);
+    int update(@Param("id") int id,@Param("name") String name,@Param("type") String type,@Param("address") String address);
 
     int delete(int id);
 

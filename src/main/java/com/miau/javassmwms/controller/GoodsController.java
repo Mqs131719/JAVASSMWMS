@@ -4,6 +4,7 @@ import com.miau.javassmwms.entity.Goods;
 import com.miau.javassmwms.service.intf.GoodsService;
 import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +29,8 @@ public class GoodsController {
     }
 
     @PostMapping("update.do")
-    public R update(Goods goods){
-        return service.update(goods);
+    public R update(int id,String name, String type, String address){
+        return service.update(id,name, type, address);
     }
 
     @GetMapping("delete.do")

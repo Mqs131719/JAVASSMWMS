@@ -27,7 +27,6 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-
         insert into t_goods(name,address,type,ctime) values(#{name},#{address},#{type},now())
     </insert>
 
@@ -36,7 +35,7 @@
     </delete>
 
     <update id="update">
-        update t_goods set name=#{name},type=#{type},address=#{address} where id=#{id}
+        update t_goods name=#{name},type=#{type},address=#{address} where id=#{id}
     </update>
 
     <delete id="debyid">

@@ -15,11 +15,11 @@
     </style>
 </head>
 <body>
-
+<div class="layui-form layuimini-form">
     <div class="layui-form-item">
         <label class="layui-form-label">用户选择：</label>
         <div class="layui-input-block">
-            <select name="name" id="uid" lay-verify="required">
+            <select name="uid" id="uid" lay-verify="required">
 
             </select>
         </div>
@@ -28,7 +28,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">商品选择：</label>
         <div class="layui-input-block">
-            <select name="name" id="gid" lay-verify="required">
+            <select name="gid" id="gid" lay-verify="required">
 
             </select>
         </div>
@@ -40,6 +40,7 @@
         </div>
     </div>
 </div>
+</div>
 <script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
 <script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
@@ -50,23 +51,7 @@
             laydate=layui.laydate,
             layarea = layui.layarea,
             $ = layui.$;
-        //渲染日期框
-        laydate.render({
-            elem: '#date1' //指定元素
-        });
-        //渲染日期框
-        laydate.render({
-            elem: '#date2' //指定元素
-        });
-        //实现省市县三级联动
-        var home="";
-        layarea.render({
-            elem: '#area-picker',
-            change: function (res) {
-                //选择结果
-                home=res.province+res.city+res.county;
-            }
-        });
+
         //调用 查询班级列表
         loadUids();
         loadGids();
@@ -74,7 +59,7 @@
         form.on('submit(saveBtn)', function (data) {
             //请求接口  Ajax
             var d=data.field;
-
+            console.log(d);
             $.post("/api/ug/save.do",d,function (res){
                 if(res.code==200){
                     layer.msg("添加成功！");
@@ -97,7 +82,7 @@
                 $("#uid").html("");
                 //遍历
                 for(var i in res.data){
-                    $("#uid").append("<option value='"+res.data[i].uid + "'>"+res.data[i].name+"</option>");
+                    $("#uid").append("<option value='"+res.data[i].id + "'>"+res.data[i].name+"</option>");
                 }
                 form.render('select'); //渲染 select 选择框
             }
@@ -108,7 +93,7 @@
             if (res.code == 200) {
                 $("#gid").html("");
                 for (var i in res.data) {
-                    $("#gid").append("<option value='" + res.data[i].gid + "'>" + res.data[i].name+"</option>");
+                    $("#gid").append("<option value='" + res.data[i].id + "'>" + res.data[i].name+"</option>");
                 }
                 form.render('select');
             }

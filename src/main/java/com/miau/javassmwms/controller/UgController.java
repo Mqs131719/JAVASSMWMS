@@ -5,6 +5,7 @@ import com.miau.javassmwms.service.intf.UgService;
 import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class UgController {
     @Autowired
     private UgService service;
 
-    @GetMapping("save.do")
+    @PostMapping("save.do")
     public R save(UgDto ugDto){
         return service.save(ugDto);
     }
