@@ -1,6 +1,7 @@
 package com.miau.javassmwms.service.impl;
 
 import com.miau.javassmwms.dao.GoodsDao;
+import com.miau.javassmwms.dto.GoodsExcelDto;
 import com.miau.javassmwms.entity.Goods;
 import com.miau.javassmwms.service.intf.GoodsService;
 import com.miau.javassmwms.util.StringUtil;
@@ -8,6 +9,8 @@ import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 小盛胜
@@ -68,5 +71,10 @@ public class GoodsServiceImpl implements GoodsService {
         int start=(page-1)*limit;
 
         return PageBean.ok(dao.selectCount(name),dao.selectPage(name,start,limit));
+    }
+
+    @Override
+    public List<GoodsExcelDto> all() {
+        return dao.all();
     }
 }

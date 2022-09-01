@@ -1,5 +1,6 @@
 package com.miau.javassmwms.dao;
 
+import com.miau.javassmwms.dto.GoodsExcelDto;
 import com.miau.javassmwms.entity.Goods;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +22,5 @@ public interface GoodsDao {
 
     int debyid(int[] id);
 
+    List<GoodsExcelDto> all();
 }

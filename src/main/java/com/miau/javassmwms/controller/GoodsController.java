@@ -1,16 +1,20 @@
 package com.miau.javassmwms.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.miau.javassmwms.dto.GoodsExcelDto;
 import com.miau.javassmwms.entity.Goods;
 import com.miau.javassmwms.service.intf.GoodsService;
 import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
-import org.apache.ibatis.annotations.Param;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -47,4 +51,13 @@ public class GoodsController {
     public R debyid(int[] id){
         return service.debyid(id);
     }
+
+    @GetMapping("download.do")
+    public void download(HttpServletResponse response) throws IOException {
+        response.setHeader("content-disposition","attachment;filename=goods-"+System.currentTimeMillis()+".xlsx");
+        List<GoodsExcelDto> list=service.all();
+        EasyExcel.write(response.getOutputStream(),GoodsExcelDto.class).sheet(System.currentTimeMillis()+"").doWrite(list);
+    }
+
 }
+

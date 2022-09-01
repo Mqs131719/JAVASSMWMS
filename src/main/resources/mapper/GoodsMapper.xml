@@ -46,5 +46,7 @@
             )
     </delete>
 
-
+    <select id="all" resultType="com.miau.javassmwms.dto.GoodsExcelDto">
+        select * from t_goods order by id desc
+    </select>
 </mapper>

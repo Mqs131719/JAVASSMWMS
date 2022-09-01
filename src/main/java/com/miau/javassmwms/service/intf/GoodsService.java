@@ -1,5 +1,6 @@
 package com.miau.javassmwms.service.intf;
 
+import com.miau.javassmwms.dto.GoodsExcelDto;
 import com.miau.javassmwms.entity.Goods;
 import com.miau.javassmwms.vo.PageBean;
 import com.miau.javassmwms.vo.R;
@@ -18,5 +19,7 @@ public interface GoodsService {
     R debyid(int[] id);
 
     PageBean selectPage(String name,int page,int limit);
+
+    List<GoodsExcelDto> all();
 
 }
