@@ -46,7 +46,7 @@
             )
     </delete>
 
-    <select id="all" resultType="com.miau.javassmwms.dto.GoodsExcelDto">
+    <select id="all" resultType="com.miau.javassmwms.entity.Goods">
         select * from t_goods order by id desc
     </select>
 

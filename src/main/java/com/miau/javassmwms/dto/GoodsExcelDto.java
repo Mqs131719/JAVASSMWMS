@@ -1,10 +1,13 @@
 package com.miau.javassmwms.dto;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 
 
 import java.util.Date;
@@ -13,10 +16,12 @@ import java.util.Date;
  * 小盛胜
  * 2022/9/1
  */
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GoodsExcelDto {
-    @Data
     @ColumnWidth(25)
-    public class Goods {
         @ExcelProperty(value="商品id")
         private Integer id;
 
@@ -33,5 +38,4 @@ public class GoodsExcelDto {
         @ExcelProperty(value="商品来源")
         private String address;
 
-    }
 }
