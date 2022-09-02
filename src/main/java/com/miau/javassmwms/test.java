@@ -28,6 +28,6 @@ public class test {
 //    public void t3(){
 //        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 //        GoodsDao dao = context.getBean(GoodsDao.class);
-//        System.err.println(dao.update());
+//        System.err.println(dao.update(new Goods(17,"vevo","日化","sfaffafas")));
 //    }
 }

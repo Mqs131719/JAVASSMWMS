@@ -22,7 +22,9 @@ public class Goods {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ctime ;
     private String address;
-    public Goods(String name, String address,String type) {
+
+    public Goods(int id,String name,String type,String address) {
+        this.id=id;
         this.name = name;
         this.type = type;
         this.address=address;
