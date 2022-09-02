@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户选择：</label>
+        <div class="layui-input-block">
+            <select name="sid" id="sid" lay-verify="required">
+
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">供应商选择：</label>
+        <div class="layui-input-block">
+            <select name="bid" id="bid" lay-verify="required">
+
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn1">添加</button>
+        </div>
+    </div>
+</div>
+</div>
+<script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    var form,$;
+    layui.use(['form','laydate','layarea'], function () {
+        form = layui.form,
+            layer = layui.layer,
+            laydate=layui.laydate,
+            layarea = layui.layarea,
+            $ = layui.$;
+
+        //调用 查询班级列表
+        loadUids();
+        loadUmids();
+        //监听提交，实现数据新增
+        form.on('submit(saveBtn1)', function (data) {
+            //请求接口  Ajax
+            var d=data.field;
+            console.log(d);
+            $.post("/api/um/save1.do",d,function (res){
+                if(res.code==200){
+                    layer.msg("添加成功！");
+                    // 关闭弹出层
+                    parent.layui.table.reload('currentTableId');
+                    var iframeIndex = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(iframeIndex);
+                }else {
+                    layer.msg("亲，新增学员失败！");
+                }
+            })
+            return false;
+        });
+    });
+    //加载班级信息
+    function loadUids(){
+        //请求接口  Ajax
+        $.get("/api/um/all3.do",(res)=>{
+            if(res.code==200){
+                $("#uid").html("");
+                //遍历
+                for(var i in res.data){
+                    $("#sid").append("<option value='"+res.data[i].id + "'>"+res.data[i].name+"</option>");
+                }
+                form.render('select'); //渲染 select 选择框
+            }
+        })
+    }
+    function loadUmids(){
+        $.get("/api/um/all4.do",(res)=> {
+            if (res.code == 200) {
+                $("#muid").html("");
+                for (var i in res.data) {
+                    $("#bid").append("<option value='" + res.data[i].uid + "'>" + res.data[i].role+"</option>");
+                }
+                form.render('select');
+            }
+        })
+    }
+</script>
+</body>
+</html>

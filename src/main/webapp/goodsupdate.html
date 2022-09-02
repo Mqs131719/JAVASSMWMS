@@ -25,6 +25,12 @@
             <input type="text" name="name" lay-verify="required" lay-reqtext="商品名不能为空" placeholder="请输入商品名" value="" class="layui-input">
         </div>
     </div>
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label required">类型：</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" name="type" lay-verify="required" lay-reqtext="类型不能为空" placeholder="请输入类型" value="" class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="layui-form-item">
         <label class="layui-form-label">商品类型：</label>
         <div class="layui-input-block">
@@ -72,6 +78,7 @@
             $.post("/api/controller/update.do",data.field,function (res){
                 if(res.code==200){
                     // 关闭弹出层
+                    parent.layui.table.reload('currentTableId');
                     var iframeIndex = parent.layer.getFrameIndex(window.name);
                     parent.layer.close(iframeIndex);
                 }else {

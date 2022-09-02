@@ -2,7 +2,8 @@ package com.miau.javassmwms;
 
 import com.miau.javassmwms.dao.GoodsDao;
 import com.miau.javassmwms.dao.UgDao;
-import com.miau.javassmwms.entity.Goods;
+import com.miau.javassmwms.dao.UmDao;
+
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,6 +29,12 @@ public class test {
 //    public void t3(){
 //        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 //        GoodsDao dao = context.getBean(GoodsDao.class);
-//        System.err.println(dao.update(new Goods(17,"vevo","日化","sfaffafas")));
+//        System.err.println(dao.update(new Goods(16,"里眼科","日化","司法立法和立法里")));
 //    }
+@Test
+public void t4(){
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    UmDao dao = context.getBean(UmDao.class);
+    System.err.println(dao.all3());
+}
 }
