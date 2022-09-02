@@ -31,7 +31,6 @@ public class GoodsServiceImpl implements GoodsService {
 //        Goods goods1 = dao.selectOne(goods.getName());
 //        System.out.println(goods1);
         if(dao.selectOne(goods.getName())==null&&dao.save(goods)>0){
-            dao.save(goods);
             return R.ok();
         }else {
             return R.fail();
