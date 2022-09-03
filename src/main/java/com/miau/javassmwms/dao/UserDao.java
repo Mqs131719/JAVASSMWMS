@@ -2,6 +2,8 @@ package com.miau.javassmwms.dao;
 
 import com.miau.javassmwms.entity.User;
 
+import javax.jws.soap.SOAPBinding;
+
 /**
  * ░░░░░░░░░░░░░░░░░░░░░░░░▄░░
  * ░░░░░░░░░▐█░░░░░░░░░░░▄▀▒▌░
@@ -20,6 +22,8 @@ import com.miau.javassmwms.entity.User;
  * @DateTime 2022/8/28 11:37
  */
 public interface UserDao {
+    // 新增用户
+    int save(User user);
     //查询单个
     User selectByName(String name);
 }
