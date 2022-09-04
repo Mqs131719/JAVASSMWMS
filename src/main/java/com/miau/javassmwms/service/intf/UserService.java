@@ -23,6 +23,8 @@ import javax.servlet.http.HttpSession;
  * @DateTime 2022/8/28 11:38
  */
 public interface UserService {
+    // 新增
+    R save(User user);
     //登录
-    R login(User user, HttpSession session);
+    R login(String name,String password, HttpSession session);
 }

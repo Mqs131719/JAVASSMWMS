@@ -159,13 +159,19 @@
           "child": [
             {
               "title": "出库管理",
-              "href": "accessadd.html",
+              "href": "accessouttable.html",
               "icon": "fa fa-arrow-circle-right",
               "target": "_self"
             },
             {
               "title": "入库管理",
-              "href": "",
+              "href": "accesstable.html",
+              "icon": "fa fa-arrow-circle-left",
+              "target": "_self"
+            },
+            {
+              "title": "数据管理",
+              "href": "accessadd.html",
               "icon": "fa fa-arrow-circle-left",
               "target": "_self"
             }

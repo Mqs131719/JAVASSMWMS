@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>WMS仓储管理系统</title>
-    http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
-    <link rel="stylesheet" href="css/layuimini.css?v=2.0.4.2" media="all">
-    <link rel="stylesheet" href="css/themes/default.css" media="all">
-    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
-    <style id="layuimini-bg-color">
-    </style>
-</head>
-<body class="layui-layout-body layuimini-all">
-<div class="layui-layout layui-layout-admin">
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>WMS仓储管理系统</title>
+        http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="icon" href="images/favicon.ico">
+        <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css" media="all">
+        <link rel="stylesheet" href="css/layuimini.css?v=2.0.4.2" media="all">
+        <link rel="stylesheet" href="css/themes/default.css" media="all">
+        <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+        <style id="layuimini-bg-color">
+        </style>
+    </head>
+    <body class="layui-layout-body layuimini-all">
+    <div class="layui-layout layui-layout-admin">
 
     <div class="layui-header header">
         <div class="layui-logo layuimini-logo"></div>
@@ -154,10 +154,16 @@
 
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                window.location = 'page/login-3.html';
+                window.location = 'login.html';
             });
         });
     });
+    function loginOut(){
+        // 请求接口 Ajax
+        $.get("/api/user/loginout.do",(res)=>{
+            location.href="login.html";
+        })
+    }
 </script>
 </body>
 </html>

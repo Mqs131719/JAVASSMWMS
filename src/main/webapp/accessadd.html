@@ -19,34 +19,45 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">仓库id：</label>
         <div class="layui-input-block">
-            <input type="text" name="wid" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名" value="" class="layui-input">
+            <input type="text" name="wid"  value="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">状态：</label>
+        <label class="layui-form-label required">商品id：</label>
         <div class="layui-input-block">
-            <input type="radio" name="direction" value="IN" title="入库" checked="">
-            <input type="radio" name="direction" value="OUT" title="出库">
+            <input type="text" name="gid"  value="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">商品数量：</label>
         <div class="layui-input-block">
-            <input type="number" name="quantity" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机" value="" class="layui-input">
+            <input type="number" name="quantity" lay-verify="required" lay-reqtext="数量不能为空" placeholder="请输入数量" value="" class="layui-input">
         </div>
     </div>
-
-
     <div class="layui-form-item">
-        <label class="layui-form-label">商品id：</label>
+        <label class="layui-form-label required">出入库：</label>
         <div class="layui-input-block">
-            <input  type="number" name="gid" placeholder="请输入入学日期" value="" class="layui-input">
+            <input type="radio" name="direction" value="1" title="IN" checked="">
+            <input type="radio" name="direction" value="2" title="OUT">
         </div>
     </div>
-
+    <div class="layui-form-item">
+        <label class="layui-form-label required">状态：</label>
+        <div class="layui-input-block">
+            <input type="radio" name="status" value="1" title="未出库" checked="">
+            <input type="radio" name="status" value="2" title="已出库">
+            <input type="radio" name="status" value="3" title="已完成">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">关联：</label>
+        <div class="layui-input-block">
+            <input  name="flag" lay-verify="required"  value="" class="layui-input">
+        </div>
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增学员</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增</button>
         </div>
     </div>
 </div>
@@ -80,15 +91,16 @@
         form.on('submit(saveBtn)', function (data) {
             //请求接口  Ajax
             var d=data.field;
-            d.home=home;
-            $.post("/api/access/saveOut.do",d,function (res){
+            console.log(d);
+            // d.home=home;
+            $.post("/api/access/save.do",d,function (res){
                 if(res.code==200){
                     layer.msg("添加成功！");
                     // 关闭弹出层
                     var iframeIndex = parent.layer.getFrameIndex(window.name);
                     parent.layer.close(iframeIndex);
                 }else {
-                    layer.msg("亲，新增学员失败！");
+                    layer.msg("亲，新增失败！");
                 }
             })
             return false;
