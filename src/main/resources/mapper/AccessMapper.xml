@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miau.javassmwms.dao.AccessDao">
+
+    <resultMap id="accessData" type="com.miau.javassmwms.dto.AccessDto">
+        <id property="id" column="id" ></id>
+        <id property="inWid" column="wid"></id>
+        <id property="outWid" column="wid"></id>
+        <result property="goodsName" column="name"></result>
+        <result property="whName" column="whName"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="status" column="status"></result>
+    </resultMap>
+<!-- 新增入库-->
+    <insert id="saveIn">
+        insert into t_access (wid,quantity,gid,direction,status,flag)
+        values (#{accessDto.inWid},#{accessDto.quantity},#{accessDto.gid},"IN",0,#{d})
+    </insert>
+<!--    新增出库-->
+    <insert id="saveOut">
+        insert into t_access (wid,quantity,gid,direction,status,flag)
+        values (#{accessDto.outWid},#{accessDto.quantity},#{accessDto.gid},"OUT",0,#{d})
+    </insert>
+<!--出库更新 入库在途信息-->
+    <update id="updateOAt">
+        update t_inventory set way=way+#{quantity} where wid=#{inWid} and gid=#{gid}
+    </update>
+<!--出库更新 出库剩余库存信息-->
+    <update id="updateOAl">
+        update t_inventory set allowance=allowance-#{quantity} where wid=#{outWid} and gid=#{gid}
+    </update>
+    <!--入库更新 入库在途信息-->
+    <update id="updateIAt">
+        update t_inventory set allowance=allowance+#{quantity},way=way-#{quantity} where wid=#{inWid} and gid=#{gid}
+    </update>
+<!--    确认出库更新出库数据-->
+    <update id="affirmOO">
+        update t_access set status=1 where id=#{id}
+    </update>
+<!--    确认出库更新入库数据-->
+    <update id="affirmOI">
+        update t_access set status=2 where flag=(select flag from t_access where direction='IN' and id=#{id}) and direction='OUT'
+    </update>
+<!--    确认入库更新出库数据-->
+    <update id="affirmIO">
+        update t_access set status=3 where id=#{id}
+    </update>
+<!--    确认入库更新入库数据-->
+    <update id="affirmII">
+        update t_access set status=3 where flag=(select flag from t_access where direction='OUT' and id=#{id}) and direction='IN'
+    </update>
+    <!--    查询入库总条数-->
+    <select id="selectInCount" resultType="long">
+        select count(*) from t_access where wid=#{inWid}
+    </select>
+    <!--    查询出库总条数-->
+    <select id="selectOutCount" resultType="long">
+        select count(*) from t_access where wid=#{outWid}
+    </select>
+
+<!--    实现入库分页-->
+    <select id="selectPageIn" resultMap="accessData">
+        select ta.id,ta.wid,ta.quantity,ta.gid,ta.status,tw.name whName,tg.name goodsName from t_access ta
+        left join t_warehouse tw on ta.wid=tw.id
+        left join t_goods tg on ta.gid=tg.id
+        <where>
+            ta.direction='IN'
+            <if test="goodsName != null">
+              and tg.name like #{goodsName}
+            </if>
+        </where>
+         order by ta.id desc limit #{start},#{size}
+    </select>
+<!--    实现出库分页-->
+    <select id="selectPageOut" resultMap="accessData">
+        select ta.id,ta.wid,ta.quantity,ta.gid,ta.status,tw.name whName,tg.name goodsName from t_access ta
+        left join t_warehouse tw on ta.wid=tw.id
+        left join t_goods tg on ta.gid=tg.id
+        <where>
+            ta.direction='OUT'
+            <if test="goodsName != null">
+                and tg.name like #{goodsName}
+            </if>
+
+        </where>
+        order by ta.id desc limit #{start},#{size}
+    </select>
+</mapper>
