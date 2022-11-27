@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.WareHouseDao">
+    <!--    新增仓库-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into t_warehouse(name, uid, site, ctime) values (#{name},#{uid},#{site},now())
+    </insert>
+
+    <!--   查询条数 -->
+    <select id="selectCount" resultType="long">
+        select count(*) from t_warehouse
+        <where>
+            <if test="name != null">
+                name like #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectPage" resultType="com.miau.javassmwms.entity.WareHouse">
+        select * from t_warehouse
+        <where>
+            <if test="name != null">
+                name like #{name}
+            </if>
+        </where>
+        order by id desc limit #{start},#{size}
+    </select>
+
+    <!--修改-->
+    <update id="update">
+        update t_warehouse set name=#{name},uid=#{uid},site=#{site} where id=#{id}
+    </update>
+    <!--        联合查询-->
+    <select id="select1" resultType="long">
+        select count(*) from t_user u inner join t_warehouse w on u.id=w.uid where uid=#{uid}
+
+    </select>
+
+    <select id="select" resultType="com.miau.javassmwms.dto.WareHouseUser">
+        select w.*,u.name uname
+        from t_user u inner join t_warehouse w on u.id=w.uid where uid=#{uid}
+    </select>
+</mapper>

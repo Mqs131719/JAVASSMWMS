@@ -8,5 +8,5 @@ public class SystemConfig {
     //PageBean的状态码
     public static final int PAGE_OK=0;
 
-    public static final String PASS_KEY="zwRhUY2euqbM9HgoXP/DEg==";
+    public static final String PASS_KEY="h5GBGoQCxqQj+g+T09arRA==";
 }

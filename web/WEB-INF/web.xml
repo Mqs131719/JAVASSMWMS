@@ -13,6 +13,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
     <!--    2.SpringMVC 底层：Servlet-->
     <servlet>
         <servlet-name>mvc</servlet-name>
@@ -23,6 +24,7 @@
             <param-value>classpath*:springMVC.xml</param-value>
         </init-param>
     </servlet>
+
     <!--    设置Servlet的映射路径 触发规则-->
     <servlet-mapping>
         <servlet-name>mvc</servlet-name>

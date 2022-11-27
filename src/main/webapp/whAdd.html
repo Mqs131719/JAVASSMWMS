@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增用户</title>
+    <link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css">
+    <script src="lib/layui-v2.6.3/layui.js"></script>
+</head>
+<body>
+<div class="layui-container">
+    <div>
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">仓库名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入仓库名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属用户：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="uid" required  lay-verify="required" placeholder="请输入所属用户" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">地址：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="site" required  lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">创建时间：</label>
+                <div class="layui-input-block">
+                    <input type="text" id="date1" name="ctime" required  placeholder="请选择创建时间" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">新增用户</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    //Demo
+    layui.use(['form','laydate'], function(){
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var $=layui.$;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#date1' //指定元素
+        });
+        //提交
+        form.on('submit(formDemo)', function(data){
+            //请求接口 Ajax
+            $.post("/api/warehouse/insert.do",data.field,function (res){
+                if(res.code==200){
+                    //成功
+                    layer.msg("添加成功");
+                }else {
+                    //失败
+                    layer.msg("添加失败");
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

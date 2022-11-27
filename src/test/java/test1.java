@@ -14,4 +14,6 @@ public class test1 {
         // 3.解密  dec 解密
         System.out.println("解密:"+PassUtils.aesdec(key,p));
     }
-}
+
+        }
+

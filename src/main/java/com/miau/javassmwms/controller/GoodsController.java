@@ -57,7 +57,8 @@ public class GoodsController {
     public void download(HttpServletResponse response) throws IOException {
         response.setHeader("content-disposition","attachment;filename=goods-"+System.currentTimeMillis()+".xlsx");
         List<GoodsExcelDto> list=service.all();
-        EasyExcel.write(response.getOutputStream(),GoodsExcelDto.class).sheet(System.currentTimeMillis()+"").doWrite(list);
+        EasyExcel.write(response.getOutputStream(),GoodsExcelDto.class).
+                sheet(System.currentTimeMillis()+"").doWrite(list);
     }
 
     @PostMapping("upload.do")

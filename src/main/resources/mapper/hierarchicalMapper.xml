@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.HierarchicalDao">
+    <!--  新增-->
+    <insert id="save">
+        insert into t_hierarchical(sid,bid) value (#{sid},#{bid})
+    </insert>
+    <resultMap id="ssr" type="com.miau.javassmwms.dto.HierarchicalDto">
+        <id property="id" column="id"></id>
+        <id property="sid" column="sid"></id>
+        <id property="bid" column="bid"></id>
+        <result property="name" column="name"></result>
+    </resultMap>
+    <select id="selectCount" resultType="long">
+        select count(*) from t_hierarchical where sid=#{sid}
+    </select>
+    <!--    查询上下级-->
+    <select id="all" resultMap="ssr">
+        SELECT th.bid,tu.name from t_user tu LEFT JOIN t_hierarchical th ON
+            tu.id=th.bid WHERE th.sid=#{sid}
+    </select>
+
+</mapper>

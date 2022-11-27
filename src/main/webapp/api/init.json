@@ -29,13 +29,13 @@
           "child": [
             {
               "title": "供应商列表",
-              "href": "",
+              "href": "hierarchicalall.html",
               "icon": "fa fa-list",
               "target": "_self"
             },
             {
               "title": "新增供应商",
-              "href": "",
+              "href": "hieraradd.html",
               "icon": "fa fa-plus-square",
               "target": "_self"
             },
@@ -47,7 +47,7 @@
             },
             {
               "title": "购销关系维护",
-              "href": "",
+              "href": "hierarchicalall.html",
               "icon": "fa fa-plus-square",
               "target": "_self"
             }
@@ -61,19 +61,19 @@
           "child": [
             {
               "title": "客商列表",
-              "href": "",
+              "href": "merchantall.html",
               "icon": "fa fa-list",
               "target": "_self"
             },
             {
               "title": "新增客商",
-              "href": "",
+              "href": "hieraradd.html",
               "icon": "fa fa-plus-square",
               "target": "_self"
             },
             {
               "title": "上级供应商列表",
-              "href": "",
+              "href": "umadd.html",
               "icon": "fa fa-list",
               "target": "_self"
             }
@@ -87,19 +87,19 @@
           "child": [
             {
               "title": "商品列表",
-              "href": "",
+              "href": "goodstable.html",
               "icon": "fa fa-list",
               "target": "_self"
             },
             {
               "title": "新增商品",
-              "href": "",
+              "href": "goodsadd.html",
               "icon": "fa fa-plus-square",
               "target": "_self"
             },
             {
               "title": "上架商品绑定",
-              "href": "",
+              "href": "ugadd.html",
               "icon": "fa fa-pencil-square-o",
               "target": "_self"
             }
@@ -113,13 +113,13 @@
           "child": [
             {
               "title": "仓库列表",
-              "href": "",
+              "href": "whTable.html",
               "icon": "fa fa-list",
               "target": "_self"
             },
             {
               "title": "新增仓库",
-              "href": "",
+              "href": "whAdd.html",
               "icon": "fa fa-plus-square",
               "target": "_self"
             }
@@ -133,19 +133,19 @@
           "child": [
             {
               "title": "库存列表",
-              "href": "",
+              "href": "whTable.html",
               "icon": "fa fa-list",
               "target": "_self"
             },
             {
               "title": "库存盘点",
-              "href": "",
+              "href": "uwTable.html",
               "icon": "fa fa-pencil-square-o",
               "target": "_self"
             },
             {
               "title": "库存调拨",
-              "href": "",
+              "href": "wnUpdate.html",
               "icon": "fa fa-pencil-square-o",
               "target": "_self"
             }
@@ -176,6 +176,12 @@
               "target": "_self"
             }
           ]
+        },
+        {
+          "title": "用户密码注册",
+          "href": "useradd.html",
+          "icon": "fa fa-truck",
+          "target": "_self"
         }
       ]
     }

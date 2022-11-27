@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miau.javassmwms.dao.MerchantssDao">
+    <resultMap id="merchantData" type="com.miau.javassmwms.dto.MerchantssDto">
+        <id property="uid" column="uid"></id>
+        <id property="id" column="id"></id>
+        <result property="role" column="role"></result>
+        <result property="name" column="name"></result>
+        <result property="location" column="location"></result>
+        <result property="phone" column="phone"></result>
+    </resultMap>
+
+    <select id="selectCount" resultType="long">
+        select count(*) from t_merchant
+        <where>
+            <if test="role != null">
+                role like #{role}
+            </if>
+        </where>
+    </select>
+    <select id="selectPage" resultMap="merchantData">
+        select tm.uid,tm.role,tu.id,tu.name,tu.location,tu.phone from t_merchant tm inner join t_user tu on
+            tm.uid=tu.id where tm.role='客商' order by tm.uid desc limit #{start},#{size}
+    </select>
+
+
+    <select id="allks" resultType="com.miau.javassmwms.entity.Merchant">
+        select * from t_merchant where bid=#{bid}
+    </select>
+
+    <delete id="deleteks">
+        delete from t_merchant where uid=#{uid}
+    </delete>
+</mapper>

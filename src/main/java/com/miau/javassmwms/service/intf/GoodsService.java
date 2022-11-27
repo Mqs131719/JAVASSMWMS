@@ -25,4 +25,6 @@ public interface GoodsService {
     List<GoodsExcelDto> all();
 
     R upload(MultipartFile file) throws IOException;
+
+    R upload2(MultipartFile file) throws IOException;
 }

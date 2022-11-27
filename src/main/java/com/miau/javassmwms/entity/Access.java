@@ -16,4 +16,5 @@ public class Access {
     private Integer quantity;// 商品数量
     private Integer gid;// 商品id
     private String direction;// 出入库
+
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace = 写上实现的接口全限定名-->
+<mapper namespace="com.miau.javassmwms.dao.MerchantDao">
+    <resultMap id="merchantData" type="com.miau.javassmwms.dto.MerchantDto">
+        <id property="uid" column="uid"></id>
+        <id property="id" column="id"></id>
+        <result property="role" column="role"></result>
+        <result property="name" column="name"></result>
+        <result property="location" column="location"></result>
+        <result property="phone" column="phone"></result>
+    </resultMap>
+    <!--    绑定身份-->
+    <insert id="save">
+        insert into t_merchant (uid,role) value (#{uid},#{role})
+    </insert>
+    <!--    根据身份查询总数-->
+    <select id="selectCount" resultType="long">
+        select count(*) from t_merchant
+        where role=#{role}
+    </select>
+    <!--    根据身份查询 分页-->
+    <select id="selectPage" resultMap="merchantData">
+        select tm.uid,tm.role,tu.id,tu.name,tu.location,tu.phone from t_merchant tm left join t_user tu on
+            tm.uid=tu.id where tm.role='供应商' order by tm.uid desc limit #{start},#{size}
+    </select>
+    <!--    查询所有-->
+    <select id="all" resultType="com.miau.javassmwms.entity.Merchant">
+        select * from t_merchant
+    </select>
+    <!--    删除-->
+    <delete id="delete">
+        delete from t_merchant where uid=#{uid}
+    </delete>
+</mapper>
