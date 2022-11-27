@@ -84,7 +84,6 @@
     <!-- <div class="layuimini-loader">
         <div class="layuimini-loader-inner"></div>
     </div> -->
-
     <!--手机端遮罩层-->
     <!-- <div class="layuimini-make"></div> -->
 
@@ -117,7 +116,7 @@
                 <div id="layuiminiHomeTabIframe" class="layui-tab-item layui-show"></div>
             </div>
         </div>
-
+<div><label id="la1"></label></div>
     </div>
 </div>
 <script src="lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
@@ -164,6 +163,15 @@
             location.href="login.html";
         })
     }
+    js();
+    function js(){
+        var t = document.getElementById("la1");
+       setInterval(function (){
+            var data = new Date();
+            t.innerHTML=data.getFullYear()+"/"+(data.getMonth()+1)+"/"+data.getDate()+""+data.getHours()+":"+data.getMinutes();
+        },0,1000)
+    }
+
 </script>
 </body>
 </html>
